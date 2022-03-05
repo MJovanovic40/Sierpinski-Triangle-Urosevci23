@@ -4,13 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="author" content="Urosevci23">
+    <title>Trougao Sjerpinskog</title>
 
     <link rel="stylesheet" href="css/style.css" >
 </head>
 <body>
-    <h1>Sijerpinski trougao</h1>
-    <canvas id="canvas" width="1600" height="900"></canvas>
+    <div class="naslov">
+        <h1>Sjerpinski trougao</h1>
+        <div class="description">
+            <p><i><b>"Igra Haosa"</b> je algoritam koji je originalno opisan od strane Barnslija 1988. godine.<br>
+                Algoritam bira tačku nasumično unutar oblasti konveksnog n-ugaonika, potom crta sledeću tačku udaljenu od jednog od nasumično izabrabranih temena n-ugaonika udaljenu za razlomak r cele distance.<br>
+                Proces se nastavlja iterativno (nakon podešavanja prvobine tačke).<br>
+                Rezultat ove "igre haosa" je ponekad fraktal.<br>
+                <b>Trougao Sjerpinskog</b> će biti nacrtan ako se algoritam "igre haosa" konfiguriše za (3, 1/2) - Odnosno trougao je, i razlomak je 1/2.</i></p>
+        </div>
+    </div>
+    <hr>
+    
+    <div class="main">
+        <div class="interactive">
+            <div class="toolbar">
+                <button id="btnRestart" class="btn restart" onclick="restart()">Restart</button>
+                <input  type="checkbox" onChange="skip()" style="vertical-align: middle;" checked/><label style="font-size: 15px">Animacija</label>
+                <p></p>
+                <div class="slidecontainer">
+                    Koraci crtanja<br>
+                    <input type="range" min="0" max="100" value="100" class="slider" id="drawingSteps" oninput="changeRange()" disabled>
+                </div>
+            </div>
+            <canvas id="canvas" width="1000" height="860"></canvas>
+        </div>
+        <div class="team">
+            Tim Uroševci23:
+            <ul>
+                <li>Sergej Vukasović</li>
+                <li>Vlada Krstić</li>
+                <li>Boris Antonijev</li>
+                <li>Milan Jovanović</li>
+            </ul>
+        </div>
+    </div>
+    
     <script src="js/main.js"></script>
+    <script src="js/utility.js"></script>
 </body>
 </html>

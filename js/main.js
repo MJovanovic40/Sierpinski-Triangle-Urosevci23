@@ -1,19 +1,23 @@
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
 
-var numberOfIterations = 100000; //Broj iteracija iscrtavanja. Veci broj iteracija znaci preciznija slika
+var numberOfIterations = 120000; //Broj iteracija iscrtavanja. Veci broj iteracija znaci preciznija slika
 var dotSize = [1, 1];
+var sleeping = false;
 
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+const sleep = ms => new Promise(r => setTimeout(r, ms)); // Pomocna funkcija za animaciju
 
-sijerpinskiTrougao();
-async function sijerpinskiTrougao()
+
+/*
+ * Glavna funkcija za crtanje Sjerpinskog trougla
+ */
+async function sijerpinskiTrougao(iterations)
 {
     var teme1 = [0, 860];
     var teme2 = [1000, 860];
     var teme3 = [500, 0];
 
-    ctx.fillRect(...teme1, ...dotSize); // fill in the pixel at (10,10)
+    ctx.fillRect(...teme1, ...dotSize);
     ctx.fillRect(...teme2, ...dotSize);
     ctx.fillRect(...teme3, ...dotSize);
 
@@ -51,7 +55,7 @@ async function sijerpinskiTrougao()
     }
 
 
-    for(var i = 0; i<numberOfIterations; i++)
+    for(var i = 0; i<iterations; i++)
     {
         var sredinaX = (novaTacka[0] + trenutnoTeme[0])/2;
         var sredinaY = (novaTacka[1] + trenutnoTeme[1])/2;
@@ -72,10 +76,15 @@ async function sijerpinskiTrougao()
                 trenutnoTeme = teme2;
                 break;
         }
-        await sleep(0.5);
+        if(i%10 == 0 && !sleeping) {
+            await sleep(1);
+        }
+        
     }
 
     ctx.stroke();
 }
+
+sijerpinskiTrougao(numberOfIterations);
 
 
